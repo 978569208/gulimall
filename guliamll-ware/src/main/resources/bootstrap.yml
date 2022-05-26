@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        prefix: guliamll-ware
+        file-extension: yaml
+        namespace: 1b86b383-9990-49e5-95b4-4196c454d18e
+        group: DEFAULT_GROUP
+      discovery:
+        username: nacos
+        password: nacos
+        server-addr: 192.168.154.132:8848
+  application:
+    name: guliamll-ware
+  profiles:
+    active: dev
+
+
+
+
+
+
+
+
+
+
