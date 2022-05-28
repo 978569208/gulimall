@@ -1,21 +1,29 @@
+nacos:
+  server-addr: 192.168.154.132:8848
+  name-space: dev
+  server-group: DEFAULT_GROUP
+  config-group: DEFAULT_GROUP
+  server-name: renren-fast
+
+
 spring:
   cloud:
+    bootstrap.enabled: true
     nacos:
-      config:
-        prefix: renren-fast
+      discovery: # 服务注册发现
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.name-space}
+        heart-beat-interval: 3000 # 心跳间隔ms
+        heart-beat-timeout: 10000 # 心跳超时ms
+        group: ${nacos.server-group} # 服务分组 默认DEFAULT_GROUP
+      config: # 配置中心
+        # 配置中心服务器地址
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.name-space}
+        group: ${nacos.config-group}
+        prefix: ${nacos.server-name}
         file-extension: yaml
-        namespace: 1b86b383-9990-49e5-95b4-4196c454d18e
-        group: DEFAULT_GROUP
-      discovery:
-        username: nacos
-        password: nacos
-        server-addr: 192.168.154.132:8848
   application:
-    name: renren-fast
+    name: ${nacos.server-name}
   profiles:
     active: dev
-
-
-
-
-
